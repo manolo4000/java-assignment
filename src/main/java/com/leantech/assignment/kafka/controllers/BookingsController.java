@@ -18,7 +18,7 @@ public class BookingsController {
 	BookingsDAO bookingsDao;
 	
 	@PostMapping("/registrar-reserva")
-	public void registrar(Bookings booking) {
+	public void registrar(@RequestBody Bookings booking) {
 		bookingsDao.save(booking);
 	}
 	

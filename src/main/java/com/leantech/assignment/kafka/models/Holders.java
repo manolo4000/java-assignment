@@ -1,5 +1,6 @@
 package com.leantech.assignment.kafka.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,5 +21,7 @@ public class Holders {
 	private Integer id;
 	private String name;
 	private String lastname;
+	
+	@Column(unique=true)
 	private String email;
 }

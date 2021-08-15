@@ -1,0 +1,47 @@
+server:
+  port: 9000
+  tomcat.max-swallow-size: -1
+  
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092 
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+  mail:
+    server:
+      host: manolo4000.com
+      port: 465
+      protocol: smtp
+      username: leantech@manolo4000.com
+      password: b2k@3$CNrr4h
+    smtp:
+      auth: true
+      starttls.enable:  true
+      quitwait: false
+      
+  datasource:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     username: ue1jm84soyriu
+     password: 45y9ub38(7
+     url: jdbc:mysql://35.209.193.155:3306/db869crwdofxme?serverTimezone=UTC
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+  
+  servlet.multipart:
+    max-file-size: 10MB
+    max-request-size: 10MB

@@ -28,7 +28,7 @@ public class Bookings {
 	
 	@ManyToOne
 	@JoinColumn(name = "holderId", insertable = false, updatable = false)
-	private Holders holder;
+	private Users holder;
 	private Integer holderId;
 	
 	private Integer totalDays;

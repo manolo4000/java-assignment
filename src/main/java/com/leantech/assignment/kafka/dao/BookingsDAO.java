@@ -1,4 +1,4 @@
-package com.leantech.assignment.kafka.services;
+package com.leantech.assignment.kafka.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,7 +1,5 @@
 package com.leantech.assignment.kafka.services;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
@@ -18,8 +16,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamSource;
@@ -46,9 +42,6 @@ public class EmailService {
 
     private static final String PNG_MIME = "image/png";
     
-
-    @Autowired
-    private ApplicationContext applicationContext;
 
     @Autowired
     private JavaMailSender mailSender;

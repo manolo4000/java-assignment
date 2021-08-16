@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Holders {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +23,6 @@ public class Holders {
 	private String lastname;
 	
 	@Column(unique=true)
-	private String email;
+	private String username;
+	private String password;
 }

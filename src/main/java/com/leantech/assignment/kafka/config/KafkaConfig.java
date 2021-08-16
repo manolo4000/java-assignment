@@ -3,6 +3,7 @@ package com.leantech.assignment.kafka.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +34,11 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
+    @Bean
+    public NewTopic bookingsTopic() {
+		return new NewTopic("bookings", 1, (short) 1);
+    	
+    }
     /*
     @Bean
     public Producer producer() {

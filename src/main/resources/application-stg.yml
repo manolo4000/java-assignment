@@ -45,3 +45,6 @@ spring:
   servlet.multipart:
     max-file-size: 10MB
     max-request-size: 10MB
+    
+  jwt:
+    secret: 4MVH3fdKFszajc44

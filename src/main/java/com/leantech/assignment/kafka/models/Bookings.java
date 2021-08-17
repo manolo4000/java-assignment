@@ -1,5 +1,9 @@
 package com.leantech.assignment.kafka.models;
 
+
+
+
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -23,18 +27,18 @@ public class Bookings {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Date checkin;
-	private Date checkout;
+	private Date fechaIngreso;
+	private Date fechaSalida;
 	
 	@ManyToOne
-	@JoinColumn(name = "holderId", insertable = false, updatable = false)
-	private Users holder;
-	private Integer holderId;
+	@JoinColumn(name = "titularReserva", insertable = false, updatable = false)
+	private Users titularReservaUser;
+	private Integer titularReserva;
 	
-	private Integer totalDays;
-	private Integer people;
-	private Integer rooms;
-	private Integer minors;
+	private Integer totalDias;
+	private Integer numeroPersonas;
+	private Integer numeroHabitaciones;
+	private Integer numeroMenores;
 	
 	
 }

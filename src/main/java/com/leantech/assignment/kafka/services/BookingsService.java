@@ -9,21 +9,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.leantech.assignment.kafka.dao.BookingsDAO;
 import com.leantech.assignment.kafka.dao.UsersDAO;
 import com.leantech.assignment.kafka.models.UserPrincipal;
 import com.leantech.assignment.kafka.models.Users;
 
 @Service
-public class UserService implements UserDetailsService {
+public class BookingsService implements UserDetailsService {
 	
 	@Autowired
 	private UsersDAO usersDAO;
 	
 	@Autowired
-	private BCryptPasswordEncoder encoder;
+	private BookingsDAO bookingsDAO;
 	
-	@Autowired
-    private JWTUtilityService jwtUtility;
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,27 +37,6 @@ public class UserService implements UserDetailsService {
 		
 	}
 	
-	public Users getUserByToken(HttpServletRequest httpServletRequest) {
-		String authorization = httpServletRequest.getHeader("Authorization");
-        String token = null;
-        String userName = null;
 
-        if(null != authorization && authorization.startsWith("Bearer ")) {
-            token = authorization.substring(7);
-            userName = jwtUtility.getUsernameFromToken(token);
-        }
-        
-        
-		return usersDAO.findByUsername(userName);
-		
-	}
-	
-	public void secureSave(Users user) {
-		
-		String EncryptedPass = encoder.encode(user.getPassword()); 
-		user.setPassword(EncryptedPass);
-		
-		usersDAO.save(user);
-	}
 
 }

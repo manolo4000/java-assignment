@@ -4,22 +4,24 @@ server:
   
 spring:
   kafka:
-    producer:
-      bootstrap-servers: localhost:9092 
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
     
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 127.0.0.1:9092
       group-id: group_id
+      topic: bookings
       auto-offset-reset: earliest
-      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
         spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-
+    
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    
   mail:
     server:
       host: manolo4000.com

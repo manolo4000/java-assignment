@@ -22,25 +22,38 @@ public class ProducerService {
 	private KafkaTemplate<String, Bookings> kafkaTemplate;
 	
 	
-	@Async
-    public void send(Bookings booking) {
-        ListenableFuture<SendResult<String, Bookings>> future = kafkaTemplate.send(TOPIC, booking);
-        future.addCallback(new ListenableFutureCallback<SendResult<String, Bookings>>() {
+    public String send(Bookings booking) {
+    	
+    	String result = "";
+    	
+    	try {
+    		ListenableFuture<SendResult<String, Bookings>> future = kafkaTemplate.send(TOPIC, booking);
+            future.addCallback(new ListenableFutureCallback<SendResult<String, Bookings>>() {
 
-            @Override
-            public void onSuccess(final SendResult<String, Bookings> booking) {
-            	logger.info("sent message= " + booking + " with offset= " + booking.getRecordMetadata().offset());
-            	//Send email succesfull
+                @Override
+                public void onSuccess(final SendResult<String, Bookings> booking) {
+                	logger.info("sent message= " + booking.getRecordMetadata().offset());
+                	//Send email succesfull
+                }
+
+                @Override
+                public void onFailure(final Throwable throwable) {
+                	logger.error("unable to send message= " + booking, throwable);
+                }
+
+    		
+            });
+            
+            if(future.isCancelled()) {
+            	result = "El envío de la información a Kafka no se completó, revise la conexión";
             }
-
-            @Override
-            public void onFailure(final Throwable throwable) {
-            	logger.error("unable to send message= " + booking, throwable);
-            	//Send email succesfull
-            }
-
-		
-        });
+  
+    	}catch(Exception e) {
+    		
+    		return result = "El envío de la información a Kafka no se completó debido a la excepción :\n" + e.toString();
+    	}
+    	
+        return result;
     }
 	
 }

@@ -6,4 +6,6 @@ import com.leantech.assignment.kafka.models.Bookings;
 
 public interface BookingsDAO extends JpaRepository<Bookings, Integer> {
 
+	
+
 }

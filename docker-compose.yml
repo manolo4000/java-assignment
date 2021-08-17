@@ -8,10 +8,15 @@ services:
     image: wurstmeister/kafka
     ports:
     - "9092:9092"
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper:zookeeper
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "bookings:1:3"
+      KAFKA_CREATE_TOPICS: "bookings:1:1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
   mailhog:
     image: mailhog/mailhog

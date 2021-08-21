@@ -29,9 +29,9 @@
             <a href="#email-properties-configuration-">Email properties configuration</a></li>
         </ul>
     <li><a href="#dependencies-">Dependencies</a></li>
-    <li><a href="#how-to-run-">How to run</a></li>
+    <li><a href="#how-to-run--%EF%B8%8F">How to run</a></li>
     <li><a href="#run-unittesting-">Run UnitTesting</a></li>
-    <li><a href="#api-testing-">API testing</a></li>
+    <li><a href="#api-testing-%EF%B8%8F">API testing</a></li>
     <ul>
                 <li><a href="#swagger-ui-">Swagger Ui</a></li>
                 <ul>

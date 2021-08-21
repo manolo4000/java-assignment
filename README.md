@@ -303,7 +303,7 @@ _Using the Swagger we are able to autogenerate all the documentation for the API
 
 Please make sure you are running the project, then go to Swagger Ui
 
-[Swagger Ui](http://localhost:9000/swagger-ui/index.html#/) - http://localhost:/\<PORT>/swagger-ui/index.html#/
+[Swagger Ui](http://localhost:9000/swagger-ui/index.html#/) - http://localhost:9000/swagger-ui/index.html#/, the PORT can change depending on your configuration
 
 You will find this
 <img width="1444" alt="Swagger-Ui" src="https://user-images.githubusercontent.com/43767110/130321937-2a7d235e-7931-4b97-bd56-63e057fbcc4c.png">

@@ -39,7 +39,7 @@
                     <li><a href="#consult-booking">Consult booking</a></li>
                 </ul>
             </ul>
-    <li><a href="#author-">Author</a></li>
+    <li><a href="#author-%EF%B8%8F">Author</a></li>
   </ol>
 </details>
 

@@ -173,7 +173,7 @@ Here you can configure the values corresponding to the JavaMailSender, so then j
 mail.server.host=<DOMAIN>
 mail.server.protocol=<PROTOCOL>
 mail.server.port=<PORT>
-mail.server. username=<USERNAME>@<DOMAIN>
+mail.server.username=<USERNAME>@<DOMAIN>
 mail.server.password=<PASSWORD>
 
 ```

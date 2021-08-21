@@ -381,7 +381,7 @@ And Finally you will get an email where it says the all the reasons why the book
 
 <img width="1339" alt="Booking-errors" src="https://user-images.githubusercontent.com/43767110/130324981-b4182ecd-bae0-4073-8923-bfd115e0ed07.png">
 
-Otherwise, if you follow these instructions correctry and make a request with the accepted values.
+Otherwise, if you follow these instructions correctly and make a request with the accepted values.
 
 Good request example:
 ```json 

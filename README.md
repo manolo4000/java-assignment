@@ -313,7 +313,7 @@ You will find this
 
 First of all, you need to authenticate, so click on /auth and then on "Try it out".
 
-Finally change the username and password values with your user credentials and click on "excecute".
+Finally change the username and password values with your user credentials and click on "Execute".
 
 <img width="1453" alt="Auth" src="https://user-images.githubusercontent.com/43767110/130323292-c5095f48-89c2-4630-bc93-a056dc59bc44.png">
 

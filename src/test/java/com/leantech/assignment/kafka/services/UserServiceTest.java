@@ -1,7 +1,7 @@
 package com.leantech.assignment.kafka.services;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.leantech.assignment.kafka.dao.UsersDAO;
 import com.leantech.assignment.kafka.models.Users;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
 	

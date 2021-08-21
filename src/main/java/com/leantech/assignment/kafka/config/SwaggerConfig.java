@@ -52,10 +52,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 "Kafka secure API",
                 "Descripción",
                 "2.0",
-                "Términos y Condiciones",
-                new Contact("Manuel Eduardo Patarroyo Santos", "manolo4000.com", "manuelpatsan2@hotmail.com"),
+                "Terminos y Condiciones",
+                new Contact("Manuel Eduardo Patarroyo Santos", "https://www.linkedin.com/in/manuel-eduardo-patarroyo-santos-2214821a0/", "manuelpatsan2@hotmail.com"),
                 "Todos los derechos reservados",
-                "manolo4000.com",
+                "https://www.linkedin.com/in/manuel-eduardo-patarroyo-santos-2214821a0/",
                 Collections.emptyList()
         );
     }

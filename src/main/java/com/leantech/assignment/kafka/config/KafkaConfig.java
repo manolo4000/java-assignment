@@ -32,7 +32,7 @@ public class KafkaConfig {
 	@Bean
 	public NewTopic compactTopicExample() {
 		return TopicBuilder.name("bookings")
-				.partitions(1)
+				.partitions(1)	
 				.replicas(1)
 				.compact()
 				.build();

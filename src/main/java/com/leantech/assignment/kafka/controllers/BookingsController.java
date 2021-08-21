@@ -48,9 +48,14 @@ public class BookingsController {
     
 	@PostMapping("/registrar-reserva")
 	public ResponseEntity<List<String>> registrar(@RequestBody Bookings booking, HttpServletRequest httpServletRequest) {
-		
-		Users loggedin = userService.getUserByToken(httpServletRequest);
+		Users loggedin = null;
 		List<String> Errors = new ArrayList<String>();
+		try {
+			loggedin = userService.getUserByToken(httpServletRequest);
+		}catch(Exception e)
+		{
+			Errors.add("El token ha expirado o no es válido");
+		}
 		
 		boolean entrada = false;
 		boolean salida = false;
@@ -137,7 +142,16 @@ public class BookingsController {
 				boolean calculate = false;
 				if (checkin.compareTo(checkout) < 0) {
 					//Checkin va antes que checkout, todo bien
-					calculate = true;
+					Date today = new Date();
+					calendar.setTime(checkin);
+					calendar.add(Calendar.HOUR_OF_DAY, 5);
+					today = formatter.parse(formatter.format(calendar.getTime()));
+					if(checkin.before(today)) {
+						Errors.add("La fecha de ingreso no puede ser antes que hoy");
+					}else {
+						calculate = true;
+					}
+					
 				}else if(checkin.compareTo(checkout) == 0) {
 					//Es la misma fecha, no puede ser
 					Errors.add("La fecha de ingreso y de salida no puede ser la misma");
@@ -202,7 +216,14 @@ public class BookingsController {
 	
 	@GetMapping("/consultar-reserva/{id}")
 	public ResponseEntity<Bookings> consultar(@PathVariable Integer id, HttpServletRequest httpServletRequest) {
-		Users loggedin = userService.getUserByToken(httpServletRequest);
+		Users loggedin = null;
+		try {
+			loggedin = userService.getUserByToken(httpServletRequest);
+		}catch(Exception d)
+		{
+			return new ResponseEntity<Bookings>(HttpStatus.OK);
+		}
+
 		Optional<Bookings> booking = null;
 		
 		try {

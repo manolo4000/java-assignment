@@ -19,8 +19,9 @@ spring:
     
     producer:
       bootstrap-servers: 127.0.0.1:9092
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      
       
   datasource:
      driver-class-name: com.mysql.cj.jdbc.Driver
@@ -31,10 +32,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  
-  servlet.multipart:
-    max-file-size: 10MB
-    max-request-size: 10MB
     
   jwt:
     secret: 4MVH3fdKFszajc44

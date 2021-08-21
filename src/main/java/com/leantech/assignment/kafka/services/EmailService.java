@@ -106,7 +106,7 @@ public class EmailService {
     }
 
     /*
-     * Custom Mail
+     * Custom Mail sendMailConfirmation
      */
     public void sendMailConfirmation(
              final String To,final String subject, final Context ctx)
@@ -134,7 +134,7 @@ public class EmailService {
     }
     
     /*
-     * Custom Mail
+     * Custom Mail sendMailErrosList
      */
     public void sendMailErrosList(
              final String To,final String subject, final Context ctx)

@@ -38,7 +38,8 @@ public class ConsumerService {
 		String To = booking.getTitularReservaUser().getUsername();
 		String subject = "Confirmación de reserva";
     	Context ctx = new Context();
-    	ctx.setVariable("fullname", booking.getTitularReservaUser().getName() + " " + booking.getTitularReservaUser().getLastname());
+    	ctx.setVariable("idBooking", ""+booking.getId());
+		ctx.setVariable("fullname", booking.getTitularReservaUser().getName() + " " + booking.getTitularReservaUser().getLastname());
     	ctx.setVariable("checkin", simpleDateFormat.format(booking.getFechaIngreso()));
     	ctx.setVariable("checkout",simpleDateFormat.format(booking.getFechaSalida())); 
     	ctx.setVariable("rooms", ""+booking.getNumeroHabitaciones());

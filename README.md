@@ -5,41 +5,41 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project-🔍">About the Project</a>
+      <a href="#about-the-project-">About the Project</a>
     </li>
     <li>
-      <a href="#getting-started-🚀">Getting Started</a>
+      <a href="#getting-started-">Getting Started</a>
     </li>
      <ul>
-            <li><a href="#prerequisites-📋">Prerequisites</a></li>
+            <li><a href="#prerequisites-">Prerequisites</a></li>
         </ul>
-    <li><a href="#enviroment-configuration-⚙️">Enviroment configuration</a></li>
+    <li><a href="#enviroment-configuration-%EF%B8%8F">Enviroment configuration</a></li>
         <ul>
-            <li><a href="#docker-compose-configuration-🐳">Docker compose configuration</a></li>
-            <li><a href="#application-configuration-🌱">Application configuration</a></li>
-            <li><a href="#profile-configuration-👤">Profile configuration</a></li>
+            <li><a href="#docker-compose-configuration-">Docker compose configuration</a></li>
+            <li><a href="#application-configuration-">Application configuration</a></li>
+            <li><a href="#profile-configuration-">Profile configuration</a></li>
             <ul>
-                <li><a href="#kafka-🗣-💬-👂🏽">Kafka</a></li>
-                <li><a href="#database-connection-🐬">Database connection</a></li>
-                <li><a href="#jwt-secret-🔐">JWT</a></li>
+                <li><a href="#kafka---">Kafka</a></li>
+                <li><a href="#database-connection-">Database connection</a></li>
+                <li><a href="#jwt-secret-">JWT</a></li>
             </ul>
             <li>
-            <a href="#email-configuration-📤">Email configuration</a></li>
+            <a href="#email-configuration-">Email configuration</a></li>
             <li>
-            <a href="#email-properties-configuration-📨">Email properties configuration</a></li>
+            <a href="#email-properties-configuration-">Email properties configuration</a></li>
         </ul>
-    <li><a href="#dependencies-📦">Dependencies</a></li>
-    <li><a href="#how-to-run-▶️">How to run</a></li>
-    <li><a href="#run-unittesting-🔧">Run UnitTesting</a></li>
-    <li><a href="#api-testing-🛠️">API testing</a></li>
+    <li><a href="#dependencies-">Dependencies</a></li>
+    <li><a href="#how-to-run-">How to run</a></li>
+    <li><a href="#run-unittesting-">Run UnitTesting</a></li>
+    <li><a href="#api-testing-">API testing</a></li>
     <ul>
-                <li><a href="#swagger-ui-🤖">Swagger Ui</a></li>
+                <li><a href="#swagger-ui-">Swagger Ui</a></li>
                 <ul>
                     <li><a href="#add-booking">Add booking</a></li>
                     <li><a href="#consult-booking">Consult booking</a></li>
                 </ul>
             </ul>
-    <li><a href="#author-✒️">Author</a></li>
+    <li><a href="#author-">Author</a></li>
   </ol>
 </details>
 

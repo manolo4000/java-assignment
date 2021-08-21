@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Properties;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,28 +24,36 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
 
-public @Configuration
-class SpringMailConfig implements EnvironmentAware {
+@Configuration
+@PropertySource("classpath:mail/emailconfig.properties")
+public class SpringMailConfig implements ApplicationContextAware, EnvironmentAware {
 
     public static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
-    
-    private static final String HOST = "spring.mail.server.host";
-    
-    private static final String PORT = "spring.mail.server.port";
-    
-    private static final String PROTOCOL = "spring.mail.server.protocol";
 
-    private static final String USERNAME = "spring.mail.server.username";
-    
-    private static final String PASSWORD = "spring.mail.server.password";
-    
+    private static final String JAVA_MAIL_FILE = "classpath:mail/javamail.properties";
+
+    private static final String HOST = "mail.server.host";
+    private static final String PORT = "mail.server.port";
+    private static final String PROTOCOL = "mail.server.protocol";
+    private static final String USERNAME = "mail.server.username";
+    private static final String PASSWORD = "mail.server.password";
+
+
+    private ApplicationContext applicationContext;
     private Environment environment;
 
+
+
+    @Override
+    public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
     @Override
     public void setEnvironment(final Environment environment) {
         this.environment = environment;
     }
+
 
     /*
      * SPRING + JAVAMAIL: JavaMailSender instance, configured via .properties files.
@@ -52,8 +64,6 @@ class SpringMailConfig implements EnvironmentAware {
         final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         // Basic mail sender configuration, based on emailconfig.properties
-        //mailSender.setPassword(this.environment.getProperty(PASSWORD))
-        
         mailSender.setHost(this.environment.getProperty(HOST));
         mailSender.setPort(Integer.parseInt(this.environment.getProperty(PORT)));
         mailSender.setProtocol(this.environment.getProperty(PROTOCOL));
@@ -62,16 +72,8 @@ class SpringMailConfig implements EnvironmentAware {
 
         // JavaMail-specific mail sender configuration, based on javamail.properties
         final Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.transport.protocol", this.environment.getProperty(PROTOCOL));
-        javaMailProperties.put("mail.smtp.auth", true);
-        javaMailProperties.put("mail.smtp.starttls.enable", true);
-        javaMailProperties.put("mail.smtp.quitwait", false);
-        javaMailProperties.put("mail.smtp.quitwait", "imaps");
-        
+        javaMailProperties.load(this.applicationContext.getResource(JAVA_MAIL_FILE).getInputStream());
         mailSender.setJavaMailProperties(javaMailProperties);
-        
-        //javaMailProperties.load(this.applicationContext.getResource(JAVA_MAIL_FILE).getInputStream());
-        //mailSender.setJavaMailProperties(javaMailProperties);
 
         return mailSender;
 

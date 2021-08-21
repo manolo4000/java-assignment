@@ -52,12 +52,14 @@ public class UserService implements UserDetailsService {
 		
 	}
 	
-	public void secureSave(Users user) {
+	public Users secureSave(Users user) {
 		
 		String EncryptedPass = encoder.encode(user.getPassword()); 
 		user.setPassword(EncryptedPass);
 		
 		usersDAO.save(user);
+		
+		return user;
 	}
 
 }

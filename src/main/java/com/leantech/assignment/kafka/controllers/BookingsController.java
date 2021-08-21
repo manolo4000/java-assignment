@@ -5,48 +5,47 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.text.DateFormat;
+import java.util.Optional;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.context.Context;
 
 import com.leantech.assignment.kafka.dao.BookingsDAO;
+//import com.leantech.assignment.kafka.dao.BookingsDAO;
 import com.leantech.assignment.kafka.models.Bookings;
 import com.leantech.assignment.kafka.models.Users;
-import com.leantech.assignment.kafka.services.JWTUtilityService;
+import com.leantech.assignment.kafka.services.EmailService;
 import com.leantech.assignment.kafka.services.ProducerService;
 import com.leantech.assignment.kafka.services.UserService;
 
 @RestController
-@RequestMapping("controller")
 public class BookingsController {
-	
-	@Autowired
-	private BookingsDAO bookingsDao;
 	
 	@Autowired
 	private ProducerService producer;
 	
     @Autowired
-    private JWTUtilityService jwtUtility;
-
-    @Autowired
     private UserService userService;
+    
+    @Autowired
+	private EmailService emailService;
 	
+    @Autowired
+    private BookingsDAO bookingsDAO;
+    
 	@PostMapping("/registrar-reserva")
 	public ResponseEntity<List<String>> registrar(@RequestBody Bookings booking, HttpServletRequest httpServletRequest) {
 		
@@ -55,9 +54,16 @@ public class BookingsController {
 		
 		boolean entrada = false;
 		boolean salida = false;
+		boolean validemail = false;
 		
 		if(loggedin == null) {
 			Errors.add("Usuario no reconocido o registrado, reingrese o contacte a un administrador");
+		}else {
+			if(emailService.isEmail(loggedin.getUsername())) {
+				validemail = true;
+			}else {
+				Errors.add("Usuario : " + loggedin.getUsername() + " no es un email válido");
+			}
 		}
 		
 		if(booking.getId() != null){
@@ -164,7 +170,6 @@ public class BookingsController {
 				String ConnectionStatus = producer.send(booking);
 				
 				if(ConnectionStatus == "") {
-					//Enviar email satisfactorio
 					Errors.add("Registro satisfactorio");
 					return new ResponseEntity<List<String>>(Errors, HttpStatus.OK);
 				}else {
@@ -176,13 +181,49 @@ public class BookingsController {
 
 		}
 		
+		if(validemail) {
+			String To = loggedin.getUsername();
+			String subject = "Error en la reserva, se encontraron errores";
+	    	Context ctx = new Context();
+	    	ctx.setVariable("fullname", loggedin.getName() + " " + loggedin.getLastname());
+	    	ctx.setVariable("ErrorsList",Errors);
+	    	
+	    	try {
+				emailService.sendMailErrosList(To, subject, ctx);
+			} catch (Exception e) {
+				Errors.add("Error de Excepción : \n" + e.toString());
+			}
+		}
+		
 		
 		return new ResponseEntity<List<String>>(Errors, HttpStatus.BAD_REQUEST);
 		
 	}
 	
-	@GetMapping("/consultar-reserva")
-	public String consultar() {
-		return "Hola mundo";
+	@GetMapping("/consultar-reserva/{id}")
+	public ResponseEntity<Bookings> consultar(@PathVariable Integer id, HttpServletRequest httpServletRequest) {
+		Users loggedin = userService.getUserByToken(httpServletRequest);
+		Optional<Bookings> booking = null;
+		
+		try {
+			booking = bookingsDAO.findById(id);
+			
+			if(loggedin != null) {
+				
+				if(booking.get().getTitularReserva() == loggedin.getId()){
+					booking.get().getTitularReservaUser().setPassword("");
+					return new ResponseEntity<Bookings>(booking.get(),HttpStatus.OK);
+				}else {
+					booking = null;
+				}
+			}
+		}catch(Exception e) {
+			return new ResponseEntity<Bookings>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Bookings>(HttpStatus.FORBIDDEN);
+		
+		
 	}
+	
 }

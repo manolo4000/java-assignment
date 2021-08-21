@@ -21,18 +21,6 @@ spring:
       bootstrap-servers: 127.0.0.1:9092
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    
-  mail:
-    server:
-      host: manolo4000.com
-      port: 465
-      protocol: smtp
-      username: leantech@manolo4000.com
-      password: b2k@3$CNrr4h
-    smtp:
-      auth: true
-      starttls.enable:  true
-      quitwait: false
       
   datasource:
      driver-class-name: com.mysql.cj.jdbc.Driver

@@ -49,13 +49,13 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
-                "Tutorial JWT",
+                "Kafka secure API",
                 "Descripción",
                 "2.0",
                 "Términos y Condiciones",
-                new Contact("Luigi Code", "www.luigicode77.es", "micorreo@gmail.com"),
-                "Licencia",
-                "www.licencia.com",
+                new Contact("Manuel Eduardo Patarroyo Santos", "manolo4000.com", "manuelpatsan2@hotmail.com"),
+                "Todos los derechos reservados",
+                "manolo4000.com",
                 Collections.emptyList()
         );
     }

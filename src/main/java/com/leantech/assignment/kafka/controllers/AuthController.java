@@ -26,7 +26,7 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/auth")
+	@PostMapping(value = "/auth")
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 		try {
 			authenticationManager.authenticate(

@@ -18,8 +18,3 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "bookings:1:1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-    - 1025:1025 # SMTP server ports
-    - 8025:8025 # Web UI ports

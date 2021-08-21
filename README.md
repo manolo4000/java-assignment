@@ -35,6 +35,7 @@
     <ul>
                 <li><a href="#swagger-ui-">Swagger Ui</a></li>
                 <ul>
+		    <li><a href="#swagger-authentication">Add booking</a></li>
                     <li><a href="#add-booking">Add booking</a></li>
                     <li><a href="#consult-booking">Consult booking</a></li>
                 </ul>
@@ -204,12 +205,12 @@ Example:
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-        <dependency> 
-	      <groupId>mysql</groupId>  
-	      <artifactId>mysql-connector-java</artifactId>  
-	      <scope>runtime</scope> 
-	    </dependency>  
-        <dependency>
+		<dependency> 
+		      <groupId>mysql</groupId>  
+		      <artifactId>mysql-connector-java</artifactId>  
+		      <scope>runtime</scope> 
+		</dependency>  
+		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-test</artifactId>
 		    <version>5.5.2</version>
@@ -265,7 +266,7 @@ _There are two main ways to run the project, at the end both do the same, but yo
     
     then select **Maven > Existing Maven Projects** and click "Next"
     
-    in the "Root Directory" browse into the project folder, open it an the click on "Finish"
+    in the "Root Directory" browse into the project folder, open it an then click on "Finish"
 
     **4.2.2 Run the project**
 
@@ -377,7 +378,7 @@ Then it will return:
 ]
 ```
 
-And Finally you will get an email where it says the all the reasons why the booking failed.
+And Finally you will get an email where it says all the reasons why the booking failed.
 
 <img width="1339" alt="Booking-errors" src="https://user-images.githubusercontent.com/43767110/130324981-b4182ecd-bae0-4073-8923-bfd115e0ed07.png">
 

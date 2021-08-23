@@ -35,7 +35,7 @@
     <ul>
                 <li><a href="#swagger-ui-">Swagger Ui</a></li>
                 <ul>
-		    <li><a href="#swagger-authentication">Add booking</a></li>
+		    <li><a href="#swagger-authentication">Swagger Authentication</a></li>
                     <li><a href="#add-booking">Add booking</a></li>
                     <li><a href="#consult-booking">Consult booking</a></li>
                 </ul>

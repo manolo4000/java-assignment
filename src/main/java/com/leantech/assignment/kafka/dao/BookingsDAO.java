@@ -9,7 +9,4 @@ import com.leantech.assignment.kafka.models.Users;
 
 public interface BookingsDAO extends JpaRepository<Bookings, Integer> {
 
-	@Query(value="select * from bookings b where b.username = :username LIMIT 1", nativeQuery=true)
-    Users findByUsername(@Param("username") String username);
-
 }

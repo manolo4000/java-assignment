@@ -1,4 +1,4 @@
-# TechLean JavaAssignment
+#JavaAssignment
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
